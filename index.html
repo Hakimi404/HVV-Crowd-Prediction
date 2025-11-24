@@ -15,61 +15,90 @@
     }
 
     body {
-      background: radial-gradient(circle at top left, #7a0000, #0f0f0f 70%);
+      background: linear-gradient(135deg, #1a0000, #0a0a0a 80%);
       color: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     header {
       text-align: center;
-      margin-top: 80px;
-      animation: fadeIn 1s ease-in;
+      padding-top: 70px;
+      animation: fadeIn 1.5s ease-in-out;
+      position: relative;
+    }
+
+    header nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(20, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      z-index: 100;
+      box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
+    }
+
+    nav a {
+      color: #ffcccc;
+      margin: 0 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+      transform: scale(1.1);
     }
 
     header h1 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       color: #ff4d4d;
-      letter-spacing: 1px;
+      text-shadow: 0 0 25px rgba(255, 50, 50, 0.6);
+      animation: glow 3s ease-in-out infinite alternate;
+      margin-top: 3rem;
     }
 
     header h2 {
       font-size: 1.3rem;
       font-weight: 300;
       color: #d6d6d6;
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
+      letter-spacing: 1px;
     }
 
     section {
-      max-width: 950px;
-      margin: 60px 20px;
+      max-width: 900px;
+      margin: 80px auto;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
+      padding: 45px;
+      box-shadow: 0 0 35px rgba(255, 0, 0, 0.25);
       backdrop-filter: blur(10px);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: fadeIn 1.2s ease forwards;
     }
 
     section:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 40px rgba(255, 80, 80, 0.3);
+      transform: scale(1.02);
+      box-shadow: 0 0 60px rgba(255, 50, 50, 0.4);
     }
 
     h3 {
       color: #ffcccc;
       margin-bottom: 1rem;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       font-weight: 600;
       position: relative;
+      letter-spacing: 0.5px;
     }
 
     h3::after {
       content: '';
-      width: 60px;
+      width: 70px;
       height: 3px;
       background: #ff4d4d;
       position: absolute;
@@ -79,45 +108,61 @@
     }
 
     p {
-      line-height: 1.8;
+      line-height: 1.9;
       color: #f2f2f2;
       margin-top: 1.2rem;
       font-size: 1.05rem;
+      letter-spacing: 0.3px;
     }
 
     .btn {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin: 60px auto;
       background: linear-gradient(90deg, #ff0000, #990000);
       color: #fff;
-      padding: 0.9rem 1.8rem;
-      border-radius: 30px;
+      padding: 1rem 2.5rem;
+      border-radius: 40px;
       text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      margin-top: 40px;
-      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
     }
 
     .btn:hover {
       background: linear-gradient(90deg, #ff4d4d, #b30000);
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
     }
 
     footer {
-      margin: 60px 0;
       text-align: center;
-      color: #aaa;
-      font-size: 0.9rem;
+      color: #bbb;
+      font-size: 0.95rem;
+      margin: 100px 0 40px;
+      letter-spacing: 0.5px;
+    }
+
+    footer span {
+      color: #ff4d4d;
+      font-weight: 600;
     }
 
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff0000; }
+      to { text-shadow: 0 0 20px #ff8080, 0 0 40px #ff1a1a; }
     }
 
     @media (max-width: 768px) {
-      header h1 { font-size: 2.3rem; }
+      nav a { margin: 0 0.6rem; font-size: 0.9rem; }
+      header h1 { font-size: 2.5rem; }
       section { padding: 25px; }
       h3 { font-size: 1.4rem; }
     }
@@ -125,49 +170,56 @@
 </head>
 <body>
   <header>
+    <nav>
+      <a href="#vision">Vision</a>
+      <a href="#importance">Why It Matters</a>
+      <a href="#how">How It Works</a>
+      <a href="#impact">Impact</a>
+      <a href="#future">Future</a>
+    </nav>
     <h1>HVV Crowd Prediction</h1>
     <h2>Smarter Decisions for a Dynamic Hamburg</h2>
   </header>
 
-  <section>
+  <section id="vision">
     <h3>Our Vision</h3>
     <p>
-      The streets of Hamburg are full of life — but that also means congestion, unpredictability, and missed opportunities for businesses. Our vision was simple: use data to make the city smarter. We set out to build a system that predicts when and where people gather, so both citizens and entrepreneurs can plan better.
+      Hamburg moves fast — its streets, cyclists, and public transport form a living network of motion. Our vision is to use data from HVV, traffic lights, and health apps like cycling trackers to understand and forecast this movement. With this knowledge, we empower smarter living, smarter mobility, and smarter business choices.
     </p>
   </section>
 
-  <section>
+  <section id="importance">
     <h3>Why This Project Matters</h3>
     <p>
-      Every day, small business owners, food trucks, and new startups struggle to find the right spot and time to sell. Meanwhile, residents and commuters want to avoid crowded areas. By analyzing HVV data and mobility patterns, we bridge both needs — creating valuable insights that empower smarter daily decisions for everyone.
+      Every day, food trucks, small shops, and new startups struggle to find where people gather most. Meanwhile, residents want to avoid traffic jams and congested streets. Our model predicts crowd intensity based on real mobility and health data — bridging the gap between citizens and entrepreneurs with actionable insights.
     </p>
   </section>
 
-  <section>
+  <section id="how">
     <h3>How It Works</h3>
     <p>
-      Using data from HVV, weather APIs, and local events, our model predicts crowd intensity across the city. With the power of data science and machine learning, we clean, process, and visualize numerical trends — giving an intelligent snapshot of city movement in real time.
+      By combining HVV transport data, Hamburg traffic light activity, and anonymized cycling data from health applications, we built a numerical prediction model that forecasts crowd levels across time and space. With advanced data cleaning, feature engineering, and regression techniques, we turn raw signals into meaningful predictions.
     </p>
   </section>
 
-  <section>
+  <section id="impact">
     <h3>Impact for Hamburg</h3>
     <p>
-      Our project supports smarter urban living. Business owners can find the best times and places to set up shop. Citizens can plan quieter routes. Urban planners can better distribute city resources. It’s not just data — it’s insight that drives action.
+      Entrepreneurs can plan where to place their business. Commuters can choose less crowded routes. City planners can balance urban flow. Our solution strengthens the connection between technology and community — creating a healthier, more adaptive city environment.
     </p>
   </section>
 
-  <section>
+  <section id="future">
     <h3>Looking Ahead</h3>
     <p>
-      We aim to extend this project into an interactive dashboard with live data visualization, offering predictive analytics accessible to everyone. The vision is a more connected, data-informed Hamburg — efficient, vibrant, and sustainable.
+      Next, we aim to evolve this concept into a live interactive platform. Imagine an open dashboard that visualizes Hamburg’s pulse — showing real-time crowd forecasts and safe, efficient paths for everyone. That’s the vision of a truly smart Hamburg.
     </p>
   </section>
 
   <a href="https://github.com/YourUsername/hvv-crowd-prediction" class="btn">Explore Our GitHub Project</a>
 
   <footer>
-    <p>© 2025 HVV Crowd Prediction Team — University Data Science & NLP Project</p>
+    <p>© 2025 <span>HAW Hamburg</span> — Data Science & NLP Project | HVV Crowd Prediction</p>
   </footer>
 </body>
 </html>
