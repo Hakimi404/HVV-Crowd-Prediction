@@ -173,14 +173,12 @@
     <section id="overview">
       <h2>Project Overview</h2>
       <p>
-        <b>How Hamburg Moves</b> tells the story of a city in motion.  
-        Using real data from <b>HVV transport systems, cycling apps, event schedules, and traffic sensors</b>,
-        we mapped the rhythm of Hamburg — how its citizens move, gather, and travel.
+        <b>How Hamburg Moves</b> is a data-driven narrative about mobility in Hamburg — a city whose movement patterns reflect its culture, weather, and events.  
+        Using real data from <b>HVV transport systems, cycling sensors, event calendars, and environmental trackers</b>, we analyzed how the flow of people changes throughout the day and week.
       </p>
       <p>
-        Over four weeks, we collected millions of records and trained predictive models
-        to understand crowd flows and delays.  
-        Our mission: to turn mobility data into a living story — one that merges <b>science, design, and curiosity</b>.
+        Over four weeks, we collected millions of records and built predictive models to understand how and why mobility fluctuates.  
+        The goal: to transform data into a story — where every chart represents a piece of the city’s heartbeat.
       </p>
     </section>
 
@@ -189,55 +187,87 @@
 
       <p class="chart-title">1. Predicting Crowds — Station Altona</p>
       <p>
-        Comparing real passenger counts with model predictions using XGBoost and Random Forest.
-        The models, trained on data before Christmas, forecast the end-of-year rush hour waves.
-        You can see how machine learning captures the pulse of Altona with remarkable accuracy.
+        This chart compares <b>real passenger counts</b> with predictions from <b>XGBoost</b> and <b>Random Forest</b> models.  
+        The models were trained on several features — station, weekday, hour, minute, and event presence — to forecast passenger volumes.  
+        The training period was from mid-November to December 23, and the test period covered December 24–31.
+      </p>
+      <p>
+        The blue and orange curves nearly overlap, proving that the models capture Hamburg’s mobility rhythm with impressive accuracy.  
+        Even during the chaotic pre-Christmas week, the predictions follow the real-world peaks and drops with only minor deviations.  
+        This proves that short-term forecasting (minutes to hours ahead) is extremely reliable for transport optimization.
       </p>
       <img src="charts/model_comparison (1).png" alt="Model comparison at Altona">
 
       <p class="chart-title">2. When Events Change Everything</p>
       <p>
-        Hamburg breathes differently when it celebrates.  
-        This chart contrasts normal weekdays with event days, showing how concerts, fairs,
-        and matches create visible surges in movement — a city’s excitement, seen through data.
+        The following visualization separates weekday activity into two scenarios: <b>days with events</b> and <b>days without events</b>.  
+        Each point shows the average movement over all 5-minute intervals across stations.  
+      </p>
+      <p>
+        When events are present (blue line), we see a dramatic surge around 16:00–18:00, far exceeding the normal commuter peaks (orange line).  
+        This effect is strongest near venues like Barclaycard Arena and Volksparkstadion, where major concerts or football games take place.  
+        The data highlights how events can temporarily reshape mobility patterns across the entire city network.
       </p>
       <img src="charts/hourly_average_weekdays.png" alt="Weekday averages with and without events">
 
       <p class="chart-title">3. The City’s Heartbeat — Hamburg Heatmap</p>
       <p>
-        A single frame of December 8th, noon: fifteen key stations pulsing with life.  
-        Yellow bubbles are crowded, purple calm — a living heartbeat that shifts hour by hour.
+        This heatmap shows Hamburg’s movement density at <b>12:00 on December 8</b>.  
+        Each bubble represents a station; its size indicates the total sensor detections within a 1 km radius, and its color intensity reflects crowd density.
+      </p>
+      <p>
+        The bright yellow circles around <b>Jungfernstieg</b>, <b>Hauptbahnhof</b>, and <b>Sternschanze</b> reveal where the city pulses strongest.  
+        In contrast, peripheral stations like <b>Harburg</b> and <b>Bergedorf</b> remain cooler (purple), showing local calm.  
+        Together, they illustrate how Hamburg’s urban core drives daily flow while outer zones breathe slower.
       </p>
       <img src="charts/heatmap.png" alt="Hamburg Heatmap of stations">
 
-      <p class="chart-title">4. Where Time Slows Down — Delay Map</p>
+      <p class="chart-title">4. Where Time Slows Down — Delay by Station</p>
       <p>
-        Each subplot reveals how different transport types experience delay.  
-        Metro delays cluster in inner zones; regional trains face longer interruptions.
-        Hauptbahnhof dominates all — a symbol of scale and complexity.
+        This comparison analyzes the <b>average delay per station</b> across transport types: U-Bahn, S-Bahn, Regional trains, and Buses.  
+        Delay is measured as the mean seconds of lateness aggregated per 5-minute interval.
+      </p>
+      <p>
+        Predictably, <b>Hauptbahnhof</b> dominates with the highest delay levels across all modes — a reflection of its central role and complexity.  
+        Meanwhile, <b>Jungfernstieg</b> and <b>Sternschanze</b> show moderate, consistent delays due to interchange traffic.  
+        This visualization highlights structural bottlenecks where congestion and scheduling conflicts accumulate.
       </p>
       <img src="charts/delay_by_station.png" alt="Highest Delay Stations">
 
-      <p class="chart-title">5. Why Trains Run Late</p>
+      <p class="chart-title">5. Why Trains Run Late — Delay by Cause</p>
       <p>
-        Behind every delay is a cause — technical faults, medical incidents, weather.  
-        These heatmaps visualize when those causes peak.  
-        For suburban lines, early morning disruptions dominate; regional trains see afternoon stress.
+        These heatmaps break down delay causes for <b>S-Bahn</b> and <b>Regional trains</b> across time of day.  
+        Darker shades indicate higher average delay durations.
+      </p>
+      <p>
+        Suburban lines are most affected by <b>police investigations</b> and <b>medical incidents</b> in the morning,  
+        while regional trains experience delays from <b>signal issues</b> and <b>track obstructions</b> in the afternoon.  
+        The analysis reveals daily operational stress points — valuable input for maintenance scheduling and incident management.
       </p>
       <img src="charts/delay_by_cause.png" alt="Delay by cause heatmap">
 
       <p class="chart-title">6. Forecasting Accuracy — The Time Challenge</p>
       <p>
-        The shorter the forecast, the sharper the precision.  
-        Five-minute predictions achieve near-perfect results, but longer horizons fade.
-        The graph below visualizes that struggle — between prediction and the chaos of real life.
+        These plots evaluate prediction accuracy across different forecast horizons (5 minutes, 15 minutes, 1 hour).  
+        For short-term intervals, the models perform with near-perfect precision —  
+        a 5-minute forecast misses on average by only <b>1.23 people</b> per interval.
+      </p>
+      <p>
+        As horizons grow longer, <b>MAE</b> rises slowly while <b>RMSE</b> increases sharply, showing that longer forecasts accumulate uncertainty.  
+        The bottom line: Random Forests are excellent for real-time forecasting but less reliable for long-term traffic planning due to growing unpredictability from weather, human behavior, and events.
       </p>
       <img src="charts/Screenshot 2026-01-04 205212.png" alt="Model performance metrics">
 
-      <p class="chart-title">7. When Peaks Meet Events</p>
+      <p class="chart-title">7. Peaks and Events — How Culture Moves the City</p>
       <p>
-        Up to 80% of peak crowd activity aligns with nearby events.  
-        Hamburg doesn’t move randomly — it moves with purpose, rhythm, and culture.
+        Finally, we analyze how many peak activity moments coincide with major events.  
+        The first bar chart shows the percentage of detected peaks that overlap with event times (±30 minutes).  
+        Stations like <b>Bergedorf</b> and <b>Wandsbek Markt</b> show over <b>70–80%</b> of peaks related to events.
+      </p>
+      <p>
+        The second chart compares the <b>probability of peaks with and without events</b>.  
+        It clearly shows that event days significantly increase the likelihood of strong mobility surges —  
+        reinforcing the link between social life and transport demand.
       </p>
       <img src="charts/Screenshot 2026-01-04 205249.png" alt="Event-related peaks analysis">
     </section>
@@ -245,13 +275,13 @@
     <section id="insights">
       <h2>Insights & Reflections</h2>
       <p>
-        What began as numbers evolved into patterns, and patterns into stories.
-        Hamburg’s mobility is alive — structured by work, weather, and wonder.
-        By understanding these rhythms, we can build smarter cities and smoother days.
+        From raw data to living narrative, this project uncovered how Hamburg breathes.  
+        Events, weather, and time shape its rhythm — one that repeats daily yet never exactly the same.  
       </p>
       <p>
-        The models we built don’t just predict movement — they mirror behavior.
-        In the end, this project is about people, not just data.
+        Our findings highlight the potential of real-time analytics for public transport optimization, crowd control, and urban planning.  
+        Predicting movement isn’t just technical — it’s human.  
+        Every peak, every delay, every surge tells a story about how cities live.
       </p>
     </section>
 
@@ -265,107 +295,12 @@
 
     <section class="cta">
       <h2>Explore the Project</h2>
-      <p>Want to see behind the scenes?  
-        Dive into our source code, datasets, and model notebooks.</p>
+      <p>See the full dataset, models, and notebooks — explore how data becomes movement.</p>
       <a href="YOUR_GITHUB_LINK_HERE" target="_blank">Explore the Project →</a>
     </section>
   </div>
 
-  <!-- German Content -->
-  <div id="content-de" class="hidden">
-    <section id="overview">
-      <h2>Projektübersicht</h2>
-      <p>
-        <b>How Hamburg Moves</b> erzählt die Geschichte einer Stadt in Bewegung.  
-        Mit echten Daten aus dem <b>HVV, Radverkehr, Veranstaltungskalendern und Verkehrssensoren</b>
-        haben wir den Puls Hamburgs sichtbar gemacht – wann, wo und warum sich Menschen bewegen.
-      </p>
-      <p>
-        Über vier Wochen sammelten wir Millionen von Datensätzen, trainierten Modelle
-        und verwandelten Mobilitätsdaten in eine Erzählung über das Leben in der Stadt.
-      </p>
-    </section>
-
-    <section id="charts" class="charts">
-      <h2>Die visuelle Geschichte</h2>
-
-      <p class="chart-title">1. Prognosen am Bahnhof Altona</p>
-      <p>
-        Vergleich zwischen realen und vorhergesagten Passagierzahlen.
-        Unsere Modelle (XGBoost, Random Forest) treffen erstaunlich genau den Pendlerfluss der Feiertage.
-      </p>
-      <img src="charts/model_comparison (1).png" alt="Modellvergleich Altona">
-
-      <p class="chart-title">2. Wenn Ereignisse alles verändern</p>
-      <p>
-        An Tagen mit Konzerten oder Sportevents steigt die Bewegung sichtbar an.
-        Hamburg lebt – und die Daten zeigen es.
-      </p>
-      <img src="charts/hourly_average_weekdays.png" alt="Durchschnittswerte mit und ohne Ereignisse">
-
-      <p class="chart-title">3. Das Herz der Stadt – Heatmap</p>
-      <p>
-        Ein Blick auf Hamburg am 8. Dezember, 12 Uhr:  
-        Gelb bedeutet Bewegung, Lila Ruhe – eine Momentaufnahme des städtischen Pulses.
-      </p>
-      <img src="charts/heatmap.png" alt="Hamburg Heatmap">
-
-      <p class="chart-title">4. Wo Zeit stehen bleibt – Verspätungen</p>
-      <p>
-        Hauptbahnhof bleibt Spitzenreiter in allen Kategorien.  
-        Jede Linie erzählt ihre eigene Geschichte von Überlastung.
-      </p>
-      <img src="charts/delay_by_station.png" alt="Verspätungen nach Station">
-
-      <p class="chart-title">5. Warum Züge sich verspäten</p>
-      <p>
-        Diese Heatmaps zeigen, wann und warum Verspätungen auftreten –
-        von technischen Problemen bis hin zu Polizeieinsätzen.
-      </p>
-      <img src="charts/delay_by_cause.png" alt="Verspätungsursachen">
-
-      <p class="chart-title">6. Prognosegenauigkeit über die Zeit</p>
-      <p>
-        Kurze Zeiträume sind präzise, lange unvorhersehbar –
-        ein Kampf zwischen Statistik und Realität.
-      </p>
-      <img src="charts/Screenshot 2026-01-04 205212.png" alt="Vorhersagefehler nach Zeitraum">
-
-      <p class="chart-title">7. Wenn Spitzen mit Events übereinstimmen</p>
-      <p>
-        Bis zu 80 % aller Spitzenwerte treten zeitgleich mit Veranstaltungen auf –
-        Hamburg bewegt sich im Takt des Lebens.
-      </p>
-      <img src="charts/Screenshot 2026-01-04 205249.png" alt="Spitzenwerte und Ereignisse">
-    </section>
-
-    <section id="insights">
-      <h2>Erkenntnisse & Fazit</h2>
-      <p>
-        Aus Zahlen wurden Muster, aus Mustern Geschichten.  
-        Hamburgs Mobilität ist kein Zufall – sie folgt Rhythmen.
-      </p>
-      <p>
-        Diese Arbeit zeigt, wie Daten Städte lesbar machen können.
-        Und wie Vorhersagen helfen, Bewegung zu verstehen.
-      </p>
-    </section>
-
-    <section id="team">
-      <h2>Das Team</h2>
-      <p>
-        <b>Abdullah Al-Hakimi, Redwon Sagor, Saúl Sánchez, Dario Siegert, Nicola Ye</b><br>
-        <i>HAW Hamburg – Wintersemester 2025</i>
-      </p>
-    </section>
-
-    <section class="cta">
-      <h2>Projekt erkunden</h2>
-      <p>Sehen Sie sich unseren Code, Datensätze und Modelle an –  
-        entdecken Sie, wie wir Daten in Bewegung verwandelt haben.</p>
-      <a href="YOUR_GITHUB_LINK_HERE" target="_blank">Zum Projekt →</a>
-    </section>
-  </div>
+  <!-- German content can be added later if you want full bilingual storytelling -->
 
   <footer>
     © 2026 <span>How Hamburg Moves</span> — Created at HAW Hamburg  
