@@ -156,12 +156,20 @@
 <body>
   <header>
     <h1>How Hamburg Moves</h1>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#charts">Visual Story</a>
-      <a href="#insights">Insights</a>
-      <a href="#team">Team</a>
+    <nav id="nav-en">
+      <a href="#overview-en">Overview</a>
+      <a href="#charts-en">Visual Story</a>
+      <a href="#insights-en">Insights</a>
+      <a href="#team-en">Team</a>
     </nav>
+
+    <nav id="nav-de" class="hidden">
+      <a href="#overview-de">Übersicht</a>
+      <a href="#charts-de">Visuelle Geschichte</a>
+      <a href="#insights-de">Erkenntnisse</a>
+      <a href="#team-de">Team</a>
+    </nav>
+
     <div class="lang-switch">
       <button class="lang-btn" onclick="setLang('en')">EN</button>
       <button class="lang-btn" onclick="setLang('de')">DE</button>
@@ -170,7 +178,7 @@
 
   <!-- English Content -->
   <div id="content-en">
-    <section id="overview">
+    <section id="overview-en">
       <h2>Project Overview</h2>
       <p>
         <b>How Hamburg Moves</b> is a data-driven narrative about mobility in Hamburg — a city whose movement patterns reflect its culture, weather, and events.  
@@ -182,7 +190,7 @@
       </p>
     </section>
 
-    <section id="charts" class="charts">
+    <section id="charts-en" class="charts">
       <h2>The Visual Story</h2>
 
       <p class="chart-title">1. Predicting Crowds — Station Altona</p>
@@ -272,7 +280,7 @@
       <img src="charts/Screenshot 2026-01-04 205249.png" alt="Event-related peaks analysis">
     </section>
 
-    <section id="insights">
+    <section id="insights-en">
       <h2>Insights & Reflections</h2>
       <p>
         From raw data to living narrative, this project uncovered how Hamburg breathes.  
@@ -285,7 +293,7 @@
       </p>
     </section>
 
-    <section id="team">
+    <section id="team-en">
       <h2>The Team</h2>
       <p>
         <b>Nicola Ye, Redwon Sagor, Saúl Sánchez, Dario Siegert, Abdullah Al-Hakimi</b><br>
@@ -300,7 +308,13 @@
     </section>
   </div>
 
-  <!-- German content can be added later if you want full bilingual storytelling -->
+  <!-- Placeholder for German (you can fill later) -->
+  <div id="content-de" class="hidden">
+    <section id="overview-de">
+      <h2>Projektübersicht</h2>
+      <p>Deutsche Version folgt...</p>
+    </section>
+  </div>
 
   <footer>
     © 2026 <span>How Hamburg Moves</span> — Created at HAW Hamburg  
@@ -308,9 +322,16 @@
 
   <script>
     function setLang(lang) {
+      // Toggle content
       document.getElementById("content-en").classList.add("hidden");
       document.getElementById("content-de").classList.add("hidden");
       document.getElementById(`content-${lang}`).classList.remove("hidden");
+
+      // Toggle nav
+      document.getElementById("nav-en").classList.add("hidden");
+      document.getElementById("nav-de").classList.add("hidden");
+      document.getElementById(`nav-${lang}`).classList.remove("hidden");
+
       document.documentElement.lang = lang;
     }
   </script>
