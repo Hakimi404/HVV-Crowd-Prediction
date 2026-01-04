@@ -1,225 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HVV Crowd Prediction — Smart City Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Hamburg Moves</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    :root {
+      --primary: #a60000;
+      --light-bg: #f9f9f9;
+      --dark-text: #222;
+      --accent: #b30000;
     }
 
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    html {scroll-behavior: smooth;}
     body {
-      background: linear-gradient(135deg, #1a0000, #0a0a0a 80%);
-      color: #f5f5f5;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
     }
 
     header {
-      text-align: center;
-      padding-top: 70px;
-      animation: fadeIn 1.5s ease-in-out;
-      position: relative;
-    }
-
-    header nav {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
-      background: rgba(20, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      padding: 1rem 0;
-      z-index: 100;
-      box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
-    }
-
-    nav a {
-      color: #ffcccc;
-      margin: 0 1.2rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    nav a:hover {
+      background: var(--primary);
       color: #fff;
-      transform: scale(1.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 100;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     }
 
     header h1 {
-      font-size: 4rem;
-      color: #ff4d4d;
-      text-shadow: 0 0 25px rgba(255, 50, 50, 0.6);
-      animation: glow 3s ease-in-out infinite alternate;
-      margin-top: 3rem;
-    }
-
-    header h2 {
-      font-size: 1.3rem;
-      font-weight: 300;
-      color: #d6d6d6;
-      margin-top: 0.8rem;
+      font-size: 1.6rem;
       letter-spacing: 1px;
     }
 
-    section {
-      max-width: 900px;
-      margin: 80px auto;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 45px;
-      box-shadow: 0 0 35px rgba(255, 0, 0, 0.25);
-      backdrop-filter: blur(10px);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      animation: fadeIn 1.2s ease forwards;
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      transition: 0.3s;
     }
 
-    section:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 60px rgba(255, 50, 50, 0.4);
-    }
+    nav a:hover {color: #ffd5d5;}
 
-    h3 {
-      color: #ffcccc;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
+    .lang-toggle {
+      border: none;
+      background: #fff;
+      color: var(--primary);
       font-weight: 600;
-      position: relative;
-      letter-spacing: 0.5px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    h3::after {
-      content: '';
-      width: 70px;
-      height: 3px;
-      background: #ff4d4d;
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      border-radius: 5px;
+    .lang-toggle:hover {background: #ffd5d5;}
+
+    section {
+      padding: 6rem 2rem 3rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
     }
 
     p {
-      line-height: 1.9;
-      color: #f2f2f2;
-      margin-top: 1.2rem;
-      font-size: 1.05rem;
-      letter-spacing: 0.3px;
+      margin-bottom: 1rem;
+      text-align: justify;
     }
 
-    .btn {
-      display: block;
-      width: fit-content;
-      margin: 60px auto;
-      background: linear-gradient(90deg, #ff0000, #990000);
+    .charts img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--primary);
       color: #fff;
-      padding: 1rem 2.5rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: all 0.4s ease;
-      box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+      border-radius: 12px;
+      margin-top: 3rem;
     }
 
-    .btn:hover {
-      background: linear-gradient(90deg, #ff4d4d, #b30000);
-      transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
+    .cta a {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0.9rem 1.6rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      transition: 0.3s;
     }
+
+    .cta a:hover {background: #ffdada;}
 
     footer {
       text-align: center;
-      color: #bbb;
-      font-size: 0.95rem;
-      margin: 100px 0 40px;
-      letter-spacing: 0.5px;
-    }
-
-    footer span {
-      color: #ff4d4d;
-      font-weight: 600;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff0000; }
-      to { text-shadow: 0 0 20px #ff8080, 0 0 40px #ff1a1a; }
+      padding: 1.5rem;
+      color: #555;
+      font-size: 0.9rem;
+      background: #fff;
+      margin-top: 2rem;
+      border-top: 2px solid #eee;
     }
 
     @media (max-width: 768px) {
-      nav a { margin: 0 0.6rem; font-size: 0.9rem; }
-      header h1 { font-size: 2.5rem; }
-      section { padding: 25px; }
-      h3 { font-size: 1.4rem; }
+      nav a {margin: 0 0.5rem;}
+      header h1 {font-size: 1.3rem;}
     }
   </style>
 </head>
+
 <body>
   <header>
+    <h1>How Hamburg Moves</h1>
     <nav>
-      <a href="#vision">Vision</a>
-      <a href="#importance">Why It Matters</a>
-      <a href="#how">How It Works</a>
-      <a href="#impact">Impact</a>
-      <a href="#future">Future</a>
+      <a href="#overview">Overview</a>
+      <a href="#charts">Charts</a>
+      <a href="#insights">Insights</a>
+      <a href="#team">Team</a>
+      <a href="#explore">GitHub</a>
     </nav>
-    <h1>HVV Crowd Prediction</h1>
-    <h2>Smarter Decisions for a Dynamic Hamburg</h2>
+    <button class="lang-toggle" onclick="toggleLang()">EN / DE</button>
   </header>
 
-  <section id="vision">
-    <h3>Our Vision</h3>
+  <section id="overview">
+    <h2>Project Overview</h2>
     <p>
-      Hamburg moves fast — its streets, cyclists, and public transport form a living network of motion. Our vision is to use data from HVV, traffic lights, and health apps like cycling trackers to understand and forecast this movement. With this knowledge, we empower smarter living, smarter mobility, and smarter business choices.
+      <b>How Hamburg Moves</b> explores the real-time rhythm of Hamburg’s mobility.
+      Using data from <b>HVV public transport, city traffic lights, cycling apps, and event schedules</b>,
+      we analyzed how crowds evolve throughout the day — where they form, why they appear, and how they move.
+    </p>
+    <p>
+      Our four-week study combined real-world APIs and machine learning to forecast crowded areas,
+      helping businesses plan smarter locations and residents avoid congestion.
+      The result is a fusion of <b>data science, urban analytics, and human movement</b> — a pulse map of Hamburg.
     </p>
   </section>
 
-  <section id="importance">
-    <h3>Why This Project Matters</h3>
+  <section id="charts" class="charts">
+    <h2>Key Visualizations</h2>
+
+    <p><b>1. Predicted vs Real Crowd Movement (Altona)</b><br>
+    This line chart compares the predicted and real passenger activity in Altona between December 24–31, 2025.
+    Two prediction models were trained: <b>XGBoost</b> and <b>Random Forest</b>.  
+    The orange line shows actual observations, while the blue and green lines show model predictions.  
+    Sharp spikes align with rush hours and pre-holiday surges, showing how well the models capture short-term crowd dynamics.</p>
+    <img src="38495149-ce05-4d87-bcd4-a69d0947bd1b.png" alt="Predicted vs Real Crowd Movement">
+
+    <p><b>2. Average Result by Hour (Events Impact)</b><br>
+    This chart contrasts weekday crowd levels <b>with</b> and <b>without events</b>.  
+    You can clearly see higher peaks in blue — during events, especially in afternoon hours (12–18h).  
+    It illustrates how cultural or sports events significantly amplify urban activity patterns across Hamburg.</p>
+    <img src="e425b7f4-40fb-4703-96ee-a8a25c479eaa.png" alt="Average Result by Hour">
+
+    <p><b>3. Hamburg Heatmap</b><br>
+    The map visualizes Hamburg’s top 15 stations (e.g. Hauptbahnhof, Jungfernstieg, Sternschanze) on December 8, 2025, at noon.  
+    The <b>color and size</b> of each circle represent the normalized crowd intensity per station.  
+    Larger yellow bubbles indicate heavy traffic zones — making the map a snapshot of Hamburg’s living heartbeat at that moment.</p>
+    <img src="6982ad2d-ebf9-44a6-8712-df545c71e7bc.png" alt="Hamburg Heatmap">
+
+    <p><b>4. Highest Delay Stations</b><br>
+    This multi-panel figure compares <b>average delay times</b> across transport types — Metro, Suburban, Regional, and Bus.  
+    Hauptbahnhof consistently leads in delay, followed by Jungfernstieg and Altona.  
+    It highlights how central hubs suffer the most time losses, revealing infrastructure bottlenecks at key junctions.</p>
+    <img src="9a6c6465-0d36-493d-8e72-67c3e9067e24.png" alt="Highest Delay Stations">
+
+    <p><b>5. Delay Causes Heatmap</b><br>
+    Each heatmap shows when and why delays occur, grouped by cause and time of day.  
+    For Suburban Rail, police investigations and medical emergencies dominate early mornings,  
+    while Regional Rail faces technical and track-related disruptions.  
+    These insights help identify the systemic patterns behind transport unreliability.</p>
+    <img src="491cefe3-9985-4738-832c-5c2688d4dee2.png" alt="Delay by Cause and Hour">
+
+    <p><b>6. Prediction Accuracy Over Time</b><br>
+    This panel shows how prediction accuracy changes with time intervals — 5, 15, and 60 minutes.  
+    The line chart at the bottom compares <b>MAE</b> (Mean Absolute Error) and <b>RMSE</b> (Root Mean Square Error).  
+    The models perform very accurately in short intervals (±1.2 people per 5 min),  
+    but error grows over longer periods, showing the trade-off between precision and time horizon.</p>
+    <img src="5a943839-87f2-41c0-8026-e92d72df41f2.png" alt="Prediction Accuracy Over Time">
+
+    <p><b>7. Peaks Associated with Events</b><br>
+    These bar charts show how crowd peaks correspond to public events.  
+    Stations like Bergedorf, Wandsbek Markt, and Kellinghusenstraße have over 60–80% of peaks linked to nearby happenings,  
+    proving the city’s mobility pulse is deeply synchronized with its event calendar.</p>
+    <img src="072f191f-08b5-4017-959a-a91cf343c0b0.png" alt="Peaks Associated with Events">
+  </section>
+
+  <section id="insights">
+    <h2>Insights & Impact</h2>
     <p>
-      Every day, food trucks, small shops, and new startups struggle to find where people gather most. Meanwhile, residents want to avoid traffic jams and congested streets. Our model predicts crowd intensity based on real mobility and health data — bridging the gap between citizens and entrepreneurs with actionable insights.
+      The data reveals a clear story: Hamburg’s public life and movement are driven by time, location, and culture.  
+      Predictive modeling proves that human mobility follows consistent patterns, disrupted only by special events or unexpected delays.
+    </p>
+    <p>
+      From an urban perspective, this project demonstrates the power of integrating mobility data into smart city planning.
+      By linking transport analytics with event and sensor data, Hamburg could forecast congestion and guide citizens  
+      — a step toward a more efficient and sustainable urban mobility system.
     </p>
   </section>
 
-  <section id="how">
-    <h3>How It Works</h3>
+  <section id="team">
+    <h2>The Team</h2>
     <p>
-      By combining HVV transport data, Hamburg traffic light activity, and anonymized cycling data from health applications, we built a numerical prediction model that forecasts crowd levels across time and space. With advanced data cleaning, feature engineering, and regression techniques, we turn raw signals into meaningful predictions.
+      A multidisciplinary team of students from HAW Hamburg collaborated to make this project a reality.
+      Combining expertise in <b>data analysis, software engineering, and visualization</b>,  
+      we transformed static data into a dynamic story about how Hamburg moves.
     </p>
   </section>
 
-  <section id="impact">
-    <h3>Impact for Hamburg</h3>
-    <p>
-      Entrepreneurs can plan where to place their business. Commuters can choose less crowded routes. City planners can balance urban flow. Our solution strengthens the connection between technology and community — creating a healthier, more adaptive city environment.
-    </p>
+  <section id="explore" class="cta">
+    <h2>Explore the Project</h2>
+    <p>Discover the full source code, dataset, and visual notebooks on GitHub.  
+      You can explore the models, visualizations, and predictions in detail.</p>
+    <a href="YOUR_GITHUB_LINK_HERE" target="_blank">Explore the Project →</a>
   </section>
-
-  <section id="future">
-    <h3>Looking Ahead</h3>
-    <p>
-      Next, we aim to evolve this concept into a live interactive platform. Imagine an open dashboard that visualizes Hamburg’s pulse — showing real-time crowd forecasts and safe, efficient paths for everyone. That’s the vision of a truly smart Hamburg.
-    </p>
-  </section>
-
-  <a href="https://github.com/YourUsername/hvv-crowd-prediction" class="btn">Explore Our GitHub Project</a>
 
   <footer>
-    <p>© 2025 <span>HAW Hamburg</span> — Data Science & NLP Project | HVV Crowd Prediction</p>
+    © 2026 How Hamburg Moves — Created at HAW Hamburg | Data sources: HVV, City Traffic Systems, Cycling Apps, Hamburg Events
   </footer>
+
+  <script>
+    function toggleLang() {
+      const lang = document.documentElement.lang;
+      document.documentElement.lang = lang === "en" ? "de" : "en";
+      alert(lang === "en" ? "Sprache zu Deutsch gewechselt." : "Language switched to English.");
+    }
+  </script>
 </body>
 </html>
