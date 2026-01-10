@@ -1,370 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How Hamburg Moves</title>
   <style>
     :root {
-      --primary: #8b0000;
-      --background: #ffffff;
-      --text: #1c1c1c;
-      --accent: #f6e9e9;
+      --primary:#8b0000;
+      --background:#ffffff;
+      --text:#1c1c1c;
+      --accent:#f6e9e9;
     }
-
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    html {scroll-behavior: smooth;}
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: var(--background);
-      color: var(--text);
-      line-height: 1.7;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:"Segoe UI",sans-serif;
+      background:var(--background);
+      color:var(--text);
+      line-height:1.7;
     }
-
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 100;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    header{
+      position:fixed;
+      top:0;left:0;
+      width:100%;
+      background:var(--primary);
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 2rem;
+      z-index:100;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
     }
-
-    header h1 {font-size: 1.6rem; letter-spacing: 0.5px;}
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: 500;
-      transition: 0.3s;
+    header h1{font-size:1.6rem;letter-spacing:0.5px;}
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      margin:0 1rem;
+      font-weight:500;
+      transition:0.3s;
     }
-    nav a:hover {color: #ffdcdc;}
-
-    .lang-switch {display: flex; gap: 0.5rem;}
-    .lang-btn {
-      border: 2px solid white;
-      background: transparent;
-      color: white;
-      font-weight: 600;
-      padding: 0.4rem 0.8rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
+    nav a:hover{color:#ffdcdc;}
+    .lang-switch{display:flex;gap:0.5rem;}
+    .lang-btn{
+      border:2px solid white;
+      background:transparent;
+      color:white;
+      font-weight:600;
+      padding:0.4rem 0.8rem;
+      border-radius:5px;
+      cursor:pointer;
+      transition:0.3s;
     }
-    .lang-btn:hover {background: white; color: var(--primary);}
-
-    section {
-      padding: 6rem 2rem 3rem;
-      max-width: 1200px;
-      margin: auto;
+    .lang-btn:hover{background:white;color:var(--primary);}
+    section{
+      padding:6rem 2rem 3rem;
+      max-width:1200px;
+      margin:auto;
     }
-
-    h2 {
-      color: var(--primary);
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid var(--primary);
-      padding-left: 10px;
+    h2{
+      color:var(--primary);
+      font-size:2rem;
+      margin-bottom:1rem;
+      border-left:5px solid var(--primary);
+      padding-left:10px;
     }
-
-    p {
-      margin-bottom: 1rem;
-      text-align: justify;
-      font-size: 1.05rem;
+    p{margin-bottom:1rem;text-align:justify;font-size:1.05rem;}
+    .charts img{
+      width:100%;
+      max-width:900px;
+      border-radius:10px;
+      margin:1.5rem auto;
+      display:block;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
     }
-
-    .charts img {
-      width: 100%;
-      max-width: 900px;
-      border-radius: 10px;
-      margin: 1.5rem auto;
-      display: block;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    .chart-title{
+      font-weight:bold;
+      color:var(--primary);
+      font-size:1.25rem;
+      margin-top:2rem;
     }
-
-    .chart-title {
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 1.25rem;
-      margin-top: 2rem;
+    footer{
+      text-align:center;
+      padding:2.5rem 1rem;
+      background:var(--accent);
+      color:#333;
+      font-size:1rem;
+      border-top:3px solid var(--primary);
     }
-
-    .cta {
-      text-align: center;
-      background: var(--primary);
-      color: white;
-      border-radius: 15px;
-      padding: 3rem 1rem;
-      margin: 4rem auto 3rem;
-      max-width: 900px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    footer span{color:var(--primary);font-weight:600;}
+    @media(max-width:768px){
+      header h1{font-size:1.3rem;}
+      nav a{margin:0 0.5rem;}
+      section{padding-top:5rem;}
     }
-
-    .cta-box {
-      background: #fff;
-      color: var(--primary);
-      font-weight: 600;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border: 3px solid #b30000;
-    }
-
-    .cta a {
-      display: inline-block;
-      background: white;
-      color: var(--primary);
-      font-weight: bold;
-      text-decoration: none;
-      padding: 1rem 1.8rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      transition: 0.3s;
-    }
-
-    .cta a:hover {background: #ffdede;}
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: var(--accent);
-      color: #333;
-      font-size: 1rem;
-      border-top: 3px solid var(--primary);
-    }
-
-    footer span {color: var(--primary); font-weight: 600;}
-    .hidden {display: none;}
-
-    @media (max-width: 768px) {
-      header h1 { font-size: 1.3rem; }
-      nav a { margin: 0 0.5rem; }
-      section { padding-top: 5rem; }
-    }
+    .hidden{display:none;}
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>How Hamburg Moves</h1>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#charts">Visual Story</a>
-      <a href="#team">Team</a>
-    </nav>
-    <div class="lang-switch">
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('de')">DE</button>
-    </div>
-  </header>
-
-  <!-- English Content -->
-  <div id="content-en">
-    <section id="overview">
-      <h2>Project Overview</h2>
-      <p><b>How Hamburg Moves</b> visualizes the pulse of Hamburg — how time, transport, and events shape the city’s rhythm.  
-      Using open HVV data, traffic logs, and AI modeling, this project transforms raw numbers into a living story of urban mobility.</p>
-    </section>
-
-    <section id="charts" class="charts">
-      <h2>The Visual Story</h2>
-
-      <p class="chart-title">1. Predicting Crowds — Station Altona</p>
-      <p>Comparison between real passenger counts and machine learning predictions (XGBoost & Random Forest).  
-      Both models replicate recurring mobility cycles, showing strong generalization even across holidays.  
-      Deviations highlight how unpredictable human behavior adds character to the city’s flow.</p>
-      <img src="charts/model_comparison (1).png" alt="Model comparison">
-
-      <p class="chart-title">2. When Events Change Everything</p>
-      <p>Event days rewrite the mobility script. Peaks between 16:00–19:00 show how concerts and sports reshape traffic,  
-      pushing commuters into synchronized waves across the network.</p>
-      <img src="charts/hourly_average_weekdays.png" alt="Event impact chart">
-
-      <p class="chart-title">3. The City’s Heartbeat — Hamburg Heatmap</p>
-      <p>Each glowing station reflects normalized crowd activity at midday.  
-      Yellow cores represent active hubs like Hauptbahnhof and Jungfernstieg,  
-      while purple outskirts remain calm — illustrating density gradients across the city.</p>
-      <img src="charts/heatmap.png" alt="Heatmap Hamburg">
-
-      <p class="chart-title">4. Where Time Slows Down — Delay by Station</p>
-      <p>Hauptbahnhof dominates as the delay epicenter, reflecting high congestion and network centrality.  
-      Metro shows minimal delays due to isolated tracks, while buses face street-level unpredictability.</p>
-      <img src="charts/delay_by_station.png" alt="Delay by Station">
-
-      <p class="chart-title">5. Unified Delay Overview</p>
-      <p>All transport systems combined. Bus and Regional Rail lead in average delay —  
-      direct consequences of shared road and rail infrastructure.  
-      Metro stands out as the most resilient mode.</p>
-      <img src="charts/delay_by_station_one_plot.png" alt="Unified Delay Chart">
-
-      <p class="chart-title">6. Hourly Delay Patterns</p>
-      <p>Morning (8:00) and evening (17:00) peaks align with daily commute cycles.  
-      Regional Rail shows late-night anomalies, likely due to ICE interference — a signature of shared infrastructure.</p>
-      <img src="charts/delay_by_hour.png" alt="Delay by Hour">
-
-      <p class="chart-title">7. Why Trains Run Late — Delay by Cause</p>
-      <p>Suburban Rail delays cluster around medical and police interventions during peak hours.  
-      Regional Rail delays, however, are dominated by planned maintenance during working hours —  
-      showing how chaos and scheduling coexist.</p>
-      <img src="charts/delay_by_caus.png" alt="Delay by Cause">
-
-      <p class="chart-title">8. Forecasting Accuracy — Random Forest</p>
-      <p>MAE and RMSE grow with prediction horizon.  
-      Short-term (15 minutes) accuracy is nearly perfect, but long-term forecasts become unreliable.  
-      Urban mobility’s complexity defies complete predictability.</p>
-      <img src="charts/Medien (4).png" alt="Forecast accuracy">
-
-      <p class="chart-title">9. Peaks and Events</p>
-      <p>Roughly 80% of passenger peaks align with event timings —  
-      confirming that cultural life is one of Hamburg’s strongest mobility drivers.</p>
-      <img src="charts/Medien (6).png" alt="Event Peaks">
-
-      <p class="chart-title">10. Random Forest Predictions</p>
-      <p>The Random Forest model accurately tracks daily mobility patterns,  
-      predicting human movement cycles with minimal noise deviation.</p>
-      <img src="charts/Medien (5).png" alt="Random Forest">
-
-      <p class="chart-title">11. XGBoost Predictions</p>
-      <p>XGBoost excels in stability and smooth transitions,  
-      effectively minimizing overreaction to outliers or sudden spikes in passenger volume.</p>
-      <img src="charts/Medien (4).png" alt="XGBoost">
-
-      <p class="chart-title">12. Clean vs Predicted (RF)</p>
-      <p>Comparing cleaned (filtered) data to RF predictions.  
-      The orange line mirrors blue trends almost perfectly — proof that noise reduction enhances model alignment.</p>
-      <img src="charts/Medien1.png" alt="Clean vs Predicted">
-
-      <p class="chart-title">13. Random Forest Error vs Horizon</p>
-      <p>As predictions extend into the future, the error increases non-linearly.  
-      This demonstrates the trade-off between foresight and reliability in machine learning for transport analytics.</p>
-      <img src="charts/Medien3.png" alt="Error vs Horizon">
-
-      <p class="chart-title">14. Probability of Peaks with and without Events</p>
-      <p>Stations like Kellinghusenstraße and Wandsbek Markt show much higher event-day peaks,  
-      demonstrating how local social events ripple through the public transit system.</p>
-      <img src="charts/Medien (2).png" alt="Probability Peaks">
-
-      <p class="chart-title">15. Peaks Related to Events per Station</p>
-      <p>Bergedorf and Berliner Tor lead with almost 80% of their peaks tied to nearby events —  
-      confirming how Hamburg’s transport system pulses in sync with its cultural calendar.</p>
-      <img src="charts/Medien (6).png" alt="Event Peaks per Station">
-    </section>
-
-    <section class="cta">
-      <div class="cta-box">
-        If you want to see the <b>source code</b> and <b>Jupyter Notebook</b> for these visualizations, click below.
-      </div>
-      <a href="https://github.com/Hakimi404/HVV-Crowd-Prediction" target="_blank">Explore the Project →</a>
-    </section>
+<header>
+  <h1>How Hamburg Moves</h1>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#charts">Visual Story</a>
+    <a href="#dataset">Dataset</a>
+  </nav>
+  <div class="lang-switch">
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
   </div>
+</header>
 
-  <!-- German Content -->
-  <div id="content-de" class="hidden">
-    <section id="overview">
-      <h2>Projektübersicht</h2>
-      <p><b>How Hamburg Moves</b> zeigt, wie sich Hamburg im Rhythmus der Daten bewegt.  
-      Anhand von HVV-Daten und KI-Analysen werden Bewegungsmuster, Verspätungen und Ereignisse sichtbar gemacht.</p>
-    </section>
+<!-- English -->
+<div id="content-en">
+<section id="overview">
+  <h2>Project Overview</h2>
+  <p><b>How Hamburg Moves</b> visualizes the pulse of Hamburg through open mobility data.  
+  Using HVV public transport records, traffic sensors, and event timelines, we explored how human behavior interacts with transport infrastructure.  
+  The project merges data science, visualization, and storytelling to portray a living city in motion.</p>
+</section>
 
-    <section id="charts" class="charts">
-      <h2>Die visuelle Geschichte</h2>
+<section id="charts" class="charts">
+  <h2>The Visual Story</h2>
 
-      <p class="chart-title">1. Prognosen am Bahnhof Altona</p>
-      <p>Vergleich zwischen echten Fahrgastzahlen und Modellvorhersagen.  
-      Beide Modelle erfassen saisonale Muster und zeigen hohe Genauigkeit – selbst bei ungewöhnlichen Ereignissen.</p>
-      <img src="charts/model_comparison (1).png" alt="Model Vergleich">
+  <p class="chart-title">1. Predicting Crowds — Station Altona</p>
+  <p>This visualization compares real passenger counts with predictions from <b>XGBoost</b> and <b>Random Forest</b>.  
+  Both models capture recurring mobility patterns precisely. Deviations appear mainly on holidays and event days, showing how human spontaneity impacts predictive accuracy.</p>
+  <img src="charts/model_comparison (1).png" alt="Model comparison at Altona">
 
-      <p class="chart-title">2. Wenn Ereignisse alles verändern</p>
-      <p>Veranstaltungen verändern das Verkehrsverhalten massiv.  
-      Zwischen 16:00–19:00 entstehen starke Spitzen, die sich über das gesamte Netz verteilen.</p>
-      <img src="charts/hourly_average_weekdays.png" alt="Ereignis Einfluss">
+  <p class="chart-title">2. When Events Change Everything</p>
+  <p>Large events reshape daily mobility. Between 16:00 and 19:00, concerts and football matches cause crowd surges across the network.  
+  These ripples spread far beyond event locations — illustrating the social interconnectivity of the city’s transport ecosystem.</p>
+  <img src="charts/hourly_average_weekdays.png" alt="Weekday averages with and without events">
 
-      <p class="chart-title">3. Das Herz der Stadt – Heatmap</p>
-      <p>Hauptbahnhof und Jungfernstieg sind die aktivsten Punkte,  
-      während Randgebiete wie Bergedorf ruhiger bleiben – eine Momentaufnahme des städtischen Atems.</p>
-      <img src="charts/heatmap.png" alt="Heatmap Hamburg">
+  <p class="chart-title">3. The City’s Heartbeat — Hamburg Heatmap</p>
+  <p>This heatmap visualizes passenger activity across Hamburg.  
+  Bright central zones like <b>Hauptbahnhof</b> and <b>Jungfernstieg</b> indicate high density, while peripheral stations breathe in calmer rhythm.  
+  Together, they form a synchronized network that mirrors the city’s daily flow of energy.</p>
+  <img src="charts/heatmap.png" alt="Hamburg Heatmap">
 
-      <p class="chart-title">4. Wo Zeit stehen bleibt – Verspätungen nach Station</p>
-      <p>Der Hauptbahnhof bleibt der Engpass.  
-      Busse und Regionalzüge leiden unter geteilten Infrastrukturen, während die U-Bahn stabil bleibt.</p>
-      <img src="charts/delay_by_station.png" alt="Verspätungen Station">
+  <p class="chart-title">4. Where Time Slows Down — Delay by Station</p>
+  <p>Average delay analysis reveals <b>Hauptbahnhof</b> as the major bottleneck.  
+  Metro lines remain resilient due to isolated tracks, while buses and regional rail experience frequent external interference.</p>
+  <img src="charts/delay_by_station.png" alt="Delay by station chart">
 
-      <p class="chart-title">5. Gesamtüberblick – Alle Verkehrsmittel</p>
-      <p>Bus und Regionalbahn zeigen die höchsten Durchschnittsverspätungen.  
-      Die U-Bahn beweist die Vorteile separater Streckenführung.</p>
-      <img src="charts/delay_by_station_one_plot.png" alt="Gesamtübersicht">
+  <p class="chart-title">5. Unified Delay Overview — All Transport Modes</p>
+  <p>When all systems are combined, bus and regional rail emerge as most delay-prone due to congestion and shared infrastructure.  
+  Metro operations remain the most consistent and isolated, serving as the city’s reliability benchmark.</p>
+  <img src="charts/delay_by_station_one_plot.png" alt="Combined delay chart">
 
-      <p class="chart-title">6. Stündliche Verspätungsmuster</p>
-      <p>Morgens und abends häufen sich Verspätungen – typische Pendlerzeiten.  
-      Späte Spitzen der Regionalbahn entstehen durch Fernzüge auf denselben Gleisen.</p>
-      <img src="charts/delay_by_hour.png" alt="Verspätung Stunde">
+  <p class="chart-title">6. Hourly Delay Patterns — When the System Struggles</p>
+  <p>Morning (8:00) and evening (17:00) peaks dominate. Metro shows stability, while suburban and regional rail experience predictable spikes.  
+  The 12:00 and 22:00 anomalies for regional rail point to shared-track scheduling conflicts with ICE trains.</p>
+  <img src="charts/delay_by_hour.png" alt="Delay by hour">
 
-      <p class="chart-title">7. Ursachen der Verspätung</p>
-      <p>Nachmittags häufen sich S-Bahn-Einsätze (medizinisch/polizeilich).  
-      Regionalbahn-Verzögerungen beruhen meist auf geplanten Wartungsarbeiten.</p>
-      <img src="charts/delay_by_caus.png" alt="Ursachen">
+  <p class="chart-title">7. Why Trains Run Late — Delay by Cause</p>
+  <p>In Suburban Rail, delays cluster around medical and police incidents during rush hours.  
+  Regional Rail delays stem mostly from technical maintenance between 9:00–17:00, indicating planned operations.  
+  The pattern blends randomness with routine.</p>
+  <img src="charts/delay_by_caus.png" alt="Delay causes heatmap">
 
-      <p class="chart-title">8. Prognosegenauigkeit</p>
-      <p>Für 5–15 Minuten sind die Modelle extrem präzise.  
-      Nach einer Stunde steigt die Unsicherheit stark – das zeigt die Grenzen von Vorhersagen im Verkehr.</p>
-      <img src="charts/Medien (4).png" alt="Prognosegenauigkeit">
+  <p class="chart-title">8. Forecasting Accuracy — Random Forest</p>
+  <p>MAE and RMSE rise as prediction horizons lengthen.  
+  Forecasts under 15 minutes remain highly accurate, but long-term predictions degrade non-linearly — reflecting the unpredictability of human-driven systems.</p>
+  <img src="charts/Medien (4).png" alt="Forecast accuracy">
 
-      <p class="chart-title">9. Ereignisse und Spitzen</p>
-      <p>Etwa 80 % der Spitzenwerte treten während Veranstaltungen auf –  
-      der kulturelle Pulsschlag der Stadt ist in den Daten klar sichtbar.</p>
-      <img src="charts/Medien (6).png" alt="Ereignisse Spitzen">
+  <p class="chart-title">9. Peaks and Events — Cultural Motion</p>
+  <p>This time-series plot shows how passenger peaks align with event times.  
+  Nearly 80% of surges coincide with concerts, football games, or festivals, proving that cultural events are major mobility drivers.</p>
+  <img src="charts/Medien (6).png" alt="Event Peaks">
 
-      <p class="chart-title">10. Random Forest Prognosen</p>
-      <p>Das Modell erkennt tägliche Mobilitätszyklen und liefert stabile Vorhersagen bei geringem Rauschen.</p>
-      <img src="charts/Medien (5).png" alt="Random Forest">
+  <p class="chart-title">10. Random Forest Predictions</p>
+  <p>Random Forest effectively captures daily and weekly movement cycles.  
+  “Real” and “Predicted RF” lines nearly overlap, emphasizing how data models mirror urban rhythm.</p>
+  <img src="charts/Medien (2).png" alt="Random Forest Predictions">
 
-      <p class="chart-title">11. XGBoost Prognosen</p>
-      <p>XGBoost liefert glattere Trends und reagiert stabil auf Spitzenzeiten und Ausreißer.</p>
-      <img src="charts/Medien (4).png" alt="XGBoost">
+  <p class="chart-title">11. XGBoost Model Comparison</p>
+  <p><b>XGBoost</b> reacts faster to short-term fluctuations, handling sudden peaks better than Random Forest.  
+  However, this comes with greater volatility — a reminder that high reactivity trades off with long-term stability.</p>
+  <img src="charts/Medien3.png" alt="XGBoost Comparison">
 
-      <p class="chart-title">12. Vergleich bereinigter und vorhergesagter Daten</p>
-      <p>Nach der Datenbereinigung zeigen sich nahezu identische Muster zwischen Realität und Vorhersage.</p>
-      <img src="charts/Medien1.png" alt="Bereinigung Vergleich">
+  <p class="chart-title">12. Cleaned Real vs Predicted Data</p>
+  <p>After cleaning the raw passenger data, predictive alignment improves visibly.  
+  Noise reduction enhances clarity, helping machine learning models generalize better to true urban movement trends.</p>
+  <img src="charts/Medien1.png" alt="Cleaned Real vs Predicted">
 
-      <p class="chart-title">13. Modellfehler über Zeit</p>
-      <p>Mit zunehmender Vorhersagedauer wächst der Fehler exponentiell – ein natürlicher Effekt im dynamischen Verkehr.</p>
-      <img src="charts/Medien3.png" alt="Fehler Diagramm">
+  <p class="chart-title">13. Random Forest Error vs Horizon</p>
+  <p>Extending forecasts increases uncertainty exponentially.  
+  This visualization underscores the trade-off between foresight and reliability — the further ahead we predict, the blurrier the city’s future becomes.</p>
+  <img src="charts/model_comparison (1).png" alt="Random Forest Error vs Horizon">
 
-      <p class="chart-title">14. Wahrscheinlichkeit von Spitzen mit/ohne Ereignis</p>
-      <p>Stationen wie Kellinghusenstraße und Wandsbek Markt zeigen deutliche Unterschiede zwischen Event- und Normalzeiten.</p>
-      <img src="charts/Medien (2).png" alt="Spitzen Wahrscheinlichkeit">
+  <p class="chart-title">14. Peaks Related to Events per Station</p>
+  <p>Bergedorf and Berliner Tor show around 80% of their peak times linked to nearby events,  
+  while Altona and Hauptbahnhof have more mixed travel patterns — a balance of commuters, tourists, and long-distance travelers.</p>
+  <img src="charts/Medien (5).png" alt="Event correlation chart">
+</section>
 
-      <p class="chart-title">15. Ereignisbedingte Spitzen pro Station</p>
-      <p>Bergedorf und Berliner Tor verzeichnen fast 80 % Event-bezogene Spitzen – ein Beweis der engen Verbindung von Mobilität und Kultur.</p>
-      <img src="charts/Medien (6).png" alt="Ereignis Spitzen">
-    </section>
+<section id="dataset">
+  <h2>Dataset Information</h2>
+  <p>This project uses multiple open data sources from Hamburg’s mobility ecosystem:</p>
+  <ul style="margin-left:1.2rem;line-height:1.8;">
+    <li><b>HVV Open Data Portal</b> – Real-time and historical public transport data.</li>
+    <li><b>DWD (German Weather Service)</b> – Weather data correlated with delay analysis.</li>
+    <li><b>City of Hamburg Events API</b> – Official event listings used for crowd prediction alignment.</li>
+    <li><b>Traffic Flow Sensors</b> – Aggregated road congestion data integrated with station metrics.</li>
+  </ul>
+  <p>All datasets were cleaned, normalized, and synchronized at a 15-minute resolution for predictive modeling and visualization.</p>
+</section>
+</div>
 
-    <section class="cta">
-      <div class="cta-box">
-        Wenn Sie den <b>Quellcode</b> und das <b>Jupyter Notebook</b> sehen möchten, klicken Sie unten.
-      </div>
-      <a href="https://github.com/Hakimi404/HVV-Crowd-Prediction" target="_blank">Projekt erkunden →</a>
-    </section>
-  </div>
+<!-- German -->
+<div id="content-de" class="hidden">
+<section id="overview">
+  <h2>Projektübersicht</h2>
+  <p><b>How Hamburg Moves</b> verbindet Mobilitätsdaten mit maschinellem Lernen, um das Bewegungsmuster der Stadt sichtbar zu machen.  
+  Grundlage sind HVV-Daten, Verkehrssensoren und Veranstaltungsinformationen.</p>
+</section>
 
-  <footer>
-    © 2026 <span>How Hamburg Moves</span> — Created at HAW Hamburg
-  </footer>
+<section id="charts" class="charts">
+  <h2>Die visuelle Geschichte</h2>
 
-  <script>
-    function setLang(lang) {
-      const langs = ['en', 'de'];
-      langs.forEach(l => 
-        document.getElementById(`content-${l}`).classList.add('hidden')
-      );
-      document.getElementById(`content-${lang}`).classList.remove('hidden');
-      document.documentElement.lang = lang;
-    }
-  </script>
+  <p class="chart-title">1. Prognosen am Bahnhof Altona</p>
+  <p>Vergleich realer Fahrgastzahlen mit Vorhersagen von XGBoost und Random Forest.  
+  Beide Modelle erkennen wiederkehrende Muster, Abweichungen spiegeln unvorhersehbares Verhalten wider.</p>
+  <img src="charts/model_comparison (1).png" alt="Modellvergleich Altona">
+
+  <p class="chart-title">2. Wenn Ereignisse alles verändern</p>
+  <p>Veranstaltungen verändern die tägliche Mobilität deutlich – besonders zwischen 16 und 19 Uhr,  
+  wenn Konzerte und Spiele den Verkehrsfluss in der gesamten Stadt beeinflussen.</p>
+  <img src="charts/hourly_average_weekdays.png" alt="Wochentagsdurchschnitt">
+
+  <p class="chart-title">3. Das Herz der Stadt – Heatmap</p>
+  <p>Die Heatmap zeigt die aktivsten Knotenpunkte – Hauptbahnhof und Jungfernstieg leuchten,  
+  während Randgebiete ruhig bleiben. Sie spiegelt den Lebensrhythmus der Stadt wider.</p>
+  <img src="charts/heatmap.png" alt="Heatmap Hamburg">
+
+  <p class="chart-title">4. Verspätungen nach Station</p>
+  <p>Der Hauptbahnhof bleibt Engpass Nummer eins. Metro stabil, Busse und Regionalzüge unterliegen externen Störungen.</p>
+  <img src="charts/delay_by_station.png" alt="Verspätungen Station">
+
+  <p class="chart-title">5. Gesamtüberblick – Verkehrsmittel</p>
+  <p>Busse und Regionalzüge verzeichnen die höchsten Verspätungen,  
+  während die U-Bahn durch eigene Infrastruktur konstante Pünktlichkeit bietet.</p>
+  <img src="charts/delay_by_station_one_plot.png" alt="Kombinierte Verspätung">
+
+  <p class="chart-title">6. Stündliche Muster</p>
+  <p>Spitzenzeiten morgens und abends, zusätzliche Ausschläge durch ICE-Verkehr –  
+  ein Abbild des täglichen Lebensrhythmus.</p>
+  <img src="charts/delay_by_hour.png" alt="Verspätung nach Stunde">
+
+  <p class="chart-title">7. Ursachen der Verspätung</p>
+  <p>Nachmittags häufen sich polizeiliche und medizinische Einsätze bei der S-Bahn,  
+  während die Regionalbahn von planmäßigen Wartungen geprägt ist.</p>
+  <img src="charts/delay_by_caus.png" alt="Verspätungsursachen">
+
+  <p class="chart-title">8. Prognosegenauigkeit – Random Forest</p>
+  <p>Fehler steigen mit dem Vorhersagehorizont.  
+  Kurzfristige Prognosen bleiben präzise, längere verlieren an Zuverlässigkeit.</p>
+  <img src="charts/Medien (4).png" alt="Prognosegenauigkeit">
+
+  <p class="chart-title">9. Ereignisse und Spitzen</p>
+  <p>Etwa 80 % aller Spitzenwerte fallen auf Veranstaltungstage –  
+  Kultur ist ein zentraler Motor der Stadtmobilität.</p>
+  <img src="charts/Medien (6).png" alt="Ereignisse Spitzen">
+
+  <p class="chart-title">10. Random Forest Vorhersagen</p>
+  <p>Tägliche Bewegungsmuster werden präzise nachgebildet; Abweichungen nur bei Feiertagen oder Events.</p>
+  <img src="charts/Medien (2).png" alt="Random Forest Vorhersagen">
+
+  <p class="chart-title">11. XGBoost Vergleich</p>
+  <p>XGBoost reagiert schneller auf kurzfristige Änderungen, ist aber empfindlicher gegenüber Ausreißern.</p>
+  <img src="charts/Medien3.png" alt="XGBoost Vergleich">
+
+  <p class="chart-title">12. Bereinigte Daten</p>
+  <p>Durch Datenbereinigung verbessert sich die Übereinstimmung – klare Muster, geringeres Rauschen.</p>
+  <img src="charts/Medien1.png" alt="Bereinigte Realwerte">
+
+  <p class="chart-title">13. Fehler vs Horizont</p>
+  <p>Die Prognosegenauigkeit nimmt exponentiell mit der Zeit ab – ein Hinweis auf die Grenzen langfristiger Modelle.</p>
+  <img src="charts/model_comparison (1).png" alt="Fehler vs Horizont">
+
+  <p class="chart-title">14. Spitzen nach Station</p>
+  <p>Bergedorf und Berliner Tor zeigen die höchste Event-Korrelation (~80 %),  
+  während Altona vielfältigere Mobilitätsmuster aufweist.</p>
+  <img src="charts/Medien (5).png" alt="Spitzen nach Station">
+</section>
+
+<section id="dataset">
+  <h2>Datenquellen</h2>
+  <ul style="margin-left:1.2rem;line-height:1.8;">
+    <li><b>HVV Open Data</b> – Öffentliche Fahrplandaten und Echtzeitinformationen.</li>
+    <li><b>DWD Wetterdaten</b> – Korrelierte Wetterfaktoren zur Verspätungsanalyse.</li>
+    <li><b>Veranstaltungs-API Hamburg</b> – Kultur- und Eventdaten zur Spitzenanalyse.</li>
+    <li><b>Verkehrssensorik</b> – Verkehrsflussdaten zur Kontextbewertung.</li>
+  </ul>
+  <p>Alle Quellen wurden auf einheitliche 15-Minuten-Zeitfenster normalisiert,  
+  um Vergleichbarkeit und Vorhersagequalität zu gewährleisten.</p>
+</section>
+</div>
+
+<footer>
+  © 2026 <span>How Hamburg Moves</span> — Created at HAW Hamburg
+</footer>
+
+<script>
+function setLang(lang){
+  ['en','de'].forEach(l=>document.getElementById(`content-${l}`).classList.add('hidden'));
+  document.getElementById(`content-${lang}`).classList.remove('hidden');
+  document.documentElement.lang=lang;
+}
+</script>
 </body>
 </html>
