@@ -116,85 +116,67 @@
 <div id="content-en">
 <section id="overview">
   <h2>Project Overview</h2>
-  <p><b>How Hamburg Moves</b> visualizes the pulse of Hamburg through open mobility data.  
-  Using HVV public transport records, traffic sensors, and event timelines, we explored how human behavior interacts with transport infrastructure.  
-  The project merges data science, visualization, and storytelling to portray a living city in motion.</p>
+  <p><b>How Hamburg Moves</b> visualizes the pulse of Hamburg through open mobility data. Using HVV public transport records, traffic sensors, and event timelines, we explored how human behavior interacts with transport infrastructure. The project merges data science, visualization, and storytelling to portray a living city in motion.</p>
 </section>
 
 <section id="charts" class="charts">
   <h2>The Visual Story</h2>
 
   <p class="chart-title">1. Predicting Crowds — Station Altona</p>
-  <p>This visualization compares real passenger counts with predictions from <b>XGBoost</b> and <b>Random Forest</b>.  
-  Both models capture recurring mobility patterns precisely. Deviations appear mainly on holidays and event days, showing how human spontaneity impacts predictive accuracy.</p>
+  <p>This plot compares real passenger counts with forecasts from <b>XGBoost</b> and <b>Random Forest</b> at Altona station. Both algorithms successfully follow recurring daily peaks that correspond to rush hours, but deviate slightly on days affected by events or weather. Those divergences highlight the limits of statistical models when faced with human spontaneity.</p>
   <img src="charts/model_comparison (1).png" alt="Model comparison at Altona">
 
   <p class="chart-title">2. When Events Change Everything</p>
-  <p>Large events reshape daily mobility. Between 16:00 and 19:00, concerts and football matches cause crowd surges across the network.  
-  These ripples spread far beyond event locations — illustrating the social interconnectivity of the city’s transport ecosystem.</p>
+  <p>This chart contrasts hourly averages on weekdays with and without events. Event days show a prolonged evening surge between 16:00–21:00, matching concert and match times. Even distant stations show higher activity, proving that the ripple effect of major events extends through the entire transport network.</p>
   <img src="charts/hourly_average_weekdays.png" alt="Weekday averages with and without events">
 
   <p class="chart-title">3. The City’s Heartbeat — Hamburg Heatmap</p>
-  <p>This heatmap visualizes passenger activity across Hamburg.  
-  Bright central zones like <b>Hauptbahnhof</b> and <b>Jungfernstieg</b> indicate high density, while peripheral stations breathe in calmer rhythm.  
-  Together, they form a synchronized network that mirrors the city’s daily flow of energy.</p>
+  <p>The heatmap visualizes how central hubs like <b>Hauptbahnhof</b>, <b>Jungfernstieg</b>, and <b>Altona</b> dominate city movement. Bright yellow circles indicate high passenger density; muted tones represent calmer suburban zones. It reveals Hamburg’s polycentric mobility: a dense, vibrant core with rhythmic outer loops.</p>
   <img src="charts/heatmap.png" alt="Hamburg Heatmap">
 
   <p class="chart-title">4. Where Time Slows Down — Delay by Station</p>
-  <p>Average delay analysis reveals <b>Hauptbahnhof</b> as the major bottleneck.  
-  Metro lines remain resilient due to isolated tracks, while buses and regional rail experience frequent external interference.</p>
+  <p>This set of bar charts breaks down average delays per mode. <b>Hauptbahnhof</b> remains the main bottleneck. The Metro performs best due to exclusive tracks, while Regional Rail and Bus are vulnerable to road or shared-track disruptions. The data underlines that physical infrastructure defines service reliability.</p>
   <img src="charts/delay_by_station.png" alt="Delay by station chart">
 
   <p class="chart-title">5. Unified Delay Overview — All Transport Modes</p>
-  <p>When all systems are combined, bus and regional rail emerge as most delay-prone due to congestion and shared infrastructure.  
-  Metro operations remain the most consistent and isolated, serving as the city’s reliability benchmark.</p>
+  <p>Combining all networks, we see <b>Buses</b> and <b>Regional Rail</b> have the highest delay averages, caused by congestion and inter-line dependencies. <b>Metro</b> lines show narrow, consistent ranges, confirming they operate independently from city traffic.</p>
   <img src="charts/delay_by_station_one_plot.png" alt="Combined delay chart">
 
   <p class="chart-title">6. Hourly Delay Patterns — When the System Struggles</p>
-  <p>Morning (8:00) and evening (17:00) peaks dominate. Metro shows stability, while suburban and regional rail experience predictable spikes.  
-  The 12:00 and 22:00 anomalies for regional rail point to shared-track scheduling conflicts with ICE trains.</p>
+  <p>This line chart shows delay variation over 24 hours. Morning and evening peaks dominate, reflecting commuter flows. The Metro line stays almost flat, while Suburban Rail peaks earlier than Regional Rail — evidence of passenger transfer timing. Regional spikes around midday and late night suggest interference from intercity trains. It’s a clear daily rhythm of stress and recovery.</p>
   <img src="charts/delay_by_hour.png" alt="Delay by hour">
 
   <p class="chart-title">7. Why Trains Run Late — Delay by Cause</p>
-  <p>In Suburban Rail, delays cluster around medical and police incidents during rush hours.  
-  Regional Rail delays stem mostly from technical maintenance between 9:00–17:00, indicating planned operations.  
-  The pattern blends randomness with routine.</p>
+  <p>The dual heatmap highlights different causes. Suburban Rail experiences clusters around <b>signal failures</b>, <b>medical incidents</b>, and <b>police interventions</b> in the afternoon rush. Regional Rail shows systematic delays due to <b>switch repairs</b> and <b>track closures</b> during working hours — indicating planned maintenance rather than emergencies.</p>
   <img src="charts/delay_by_caus.png" alt="Delay causes heatmap">
 
   <p class="chart-title">8. Forecasting Accuracy — Random Forest</p>
-  <p>MAE and RMSE rise as prediction horizons lengthen.  
-  Forecasts under 15 minutes remain highly accurate, but long-term predictions degrade non-linearly — reflecting the unpredictability of human-driven systems.</p>
+  <p>This time-series compares real flow with Random Forest predictions. The overlap is strong for regular weekdays, showing high short-term accuracy. Deviations accumulate as prediction horizons extend beyond 30 minutes, where unmodeled events create divergence. The model captures rhythm, not randomness — a key lesson in urban forecasting.</p>
   <img src="charts/Medien (4).png" alt="Forecast accuracy">
 
   <p class="chart-title">9. Peaks and Events — Cultural Motion</p>
-  <p>This time-series plot shows how passenger peaks align with event times.  
-  Nearly 80% of surges coincide with concerts, football games, or festivals, proving that cultural events are major mobility drivers.</p>
+  <p>This chart aligns event timelines with passenger surges. Nearly 80% of major peaks correspond to concerts, festivals, or football games. The model reproduces these surges well, proving that integrating event data enhances predictive accuracy. Culture is literally visible in Hamburg’s transport data.</p>
   <img src="charts/Medien (6).png" alt="Event Peaks">
 
   <p class="chart-title">10. Random Forest Predictions</p>
-  <p>Random Forest effectively captures daily and weekly movement cycles.  
-  “Real” and “Predicted RF” lines nearly overlap, emphasizing how data models mirror urban rhythm.</p>
+  <p>Here, the model’s predicted and actual flows are compared across stations. The close match confirms Random Forest’s strength in pattern recognition. Slight underestimations during extreme surges reflect smoothing — the algorithm generalizes the trend rather than exaggerating anomalies. That stability is valuable for operational forecasting.</p>
   <img src="charts/Medien (2).png" alt="Random Forest Predictions">
 
   <p class="chart-title">11. XGBoost Model Comparison</p>
-  <p><b>XGBoost</b> reacts faster to short-term fluctuations, handling sudden peaks better than Random Forest.  
-  However, this comes with greater volatility — a reminder that high reactivity trades off with long-term stability.</p>
+  <p>This chart compares XGBoost with Random Forest. XGBoost responds faster to abrupt changes but tends to overreact to short spikes, while Random Forest provides steadier output. The balance between agility and reliability makes them complementary choices for real-time passenger forecasting.</p>
   <img src="charts/Medien3.png" alt="XGBoost Comparison">
 
   <p class="chart-title">12. Cleaned Real vs Predicted Data</p>
-  <p>After cleaning the raw passenger data, predictive alignment improves visibly.  
-  Noise reduction enhances clarity, helping machine learning models generalize better to true urban movement trends.</p>
+  <p>The chart shows how cleaned real data aligns more smoothly with predicted series. Noise filtering clarifies the genuine commuter pattern, removing short-lived anomalies. This preprocessing step improves interpretability and stabilizes model performance — a crucial step before training or validation.</p>
   <img src="charts/Medien1.png" alt="Cleaned Real vs Predicted">
 
   <p class="chart-title">13. Random Forest Error vs Horizon</p>
-  <p>Extending forecasts increases uncertainty exponentially.  
-  This visualization underscores the trade-off between foresight and reliability — the further ahead we predict, the blurrier the city’s future becomes.</p>
-  <img src="charts/model_comparison (1).png" alt="Random Forest Error vs Horizon">
+  <p>The line plot tracks MAE and RMSE as forecast horizons increase. The error grows nonlinearly, showing that long-term uncertainty compounds quickly. This emphasizes a common truth in predictive analytics: near-future behavior is predictable, distant behavior isn’t. The model is reliable for 15–30 minutes, but confidence drops after one hour.</p>
+  <img src="charts/23b69b0f-2ec9-4093-b993-f94e7b923eae.png" alt="Random Forest Error vs Horizon">
 
   <p class="chart-title">14. Peaks Related to Events per Station</p>
-  <p>Bergedorf and Berliner Tor show around 80% of their peak times linked to nearby events,  
-  while Altona and Hauptbahnhof have more mixed travel patterns — a balance of commuters, tourists, and long-distance travelers.</p>
-  <img src="charts/Medien (5).png" alt="Event correlation chart">
+  <p>This bar chart ranks stations by how often their peaks coincide with event times. <b>Bergedorf</b> and <b>Berliner Tor</b> lead with ~80% correlation, showing they are key access points to cultural venues. <b>Hauptbahnhof</b> and <b>Altona</b> show weaker links due to mixed commuter and long-distance traffic. The visualization captures how social geography shapes transport demand.</p>
+  <img src="charts/8ef80921-9a5e-4aef-bb56-f98154e08851.png" alt="Event correlation chart">
 </section>
 
 <section id="dataset">
@@ -214,26 +196,21 @@
 <div id="content-de" class="hidden">
 <section id="overview">
   <h2>Projektübersicht</h2>
-  <p><b>How Hamburg Moves</b> verbindet Mobilitätsdaten mit maschinellem Lernen, um das Bewegungsmuster der Stadt sichtbar zu machen.  
-  Grundlage sind HVV-Daten, Verkehrssensoren und Veranstaltungsinformationen.</p>
+  <p><b>How Hamburg Moves</b> verbindet Mobilitätsdaten mit maschinellem Lernen, um das Bewegungsmuster der Stadt sichtbar zu machen. Grundlage sind HVV-Daten, Verkehrssensoren und Veranstaltungsinformationen.</p>
 </section>
 
 <section id="charts" class="charts">
   <h2>Die visuelle Geschichte</h2>
-
   <p class="chart-title">1. Prognosen am Bahnhof Altona</p>
-  <p>Vergleich realer Fahrgastzahlen mit Vorhersagen von XGBoost und Random Forest.  
-  Beide Modelle erkennen wiederkehrende Muster, Abweichungen spiegeln unvorhersehbares Verhalten wider.</p>
+  <p>Vergleich realer Fahrgastzahlen mit Vorhersagen von XGBoost und Random Forest. Beide Modelle erkennen wiederkehrende Muster präzise, Abweichungen spiegeln unvorhersehbares Verhalten wider.</p>
   <img src="charts/model_comparison (1).png" alt="Modellvergleich Altona">
 
   <p class="chart-title">2. Wenn Ereignisse alles verändern</p>
-  <p>Veranstaltungen verändern die tägliche Mobilität deutlich – besonders zwischen 16 und 19 Uhr,  
-  wenn Konzerte und Spiele den Verkehrsfluss in der gesamten Stadt beeinflussen.</p>
+  <p>Veranstaltungen verändern die tägliche Mobilität deutlich – besonders zwischen 16 und 21 Uhr, wenn Konzerte und Spiele den Verkehrsfluss in der gesamten Stadt beeinflussen.</p>
   <img src="charts/hourly_average_weekdays.png" alt="Wochentagsdurchschnitt">
 
   <p class="chart-title">3. Das Herz der Stadt – Heatmap</p>
-  <p>Die Heatmap zeigt die aktivsten Knotenpunkte – Hauptbahnhof und Jungfernstieg leuchten,  
-  während Randgebiete ruhig bleiben. Sie spiegelt den Lebensrhythmus der Stadt wider.</p>
+  <p>Die Heatmap zeigt die aktivsten Knotenpunkte – Hauptbahnhof und Jungfernstieg leuchten, während Randgebiete ruhig bleiben. Sie spiegelt den Lebensrhythmus der Stadt wider.</p>
   <img src="charts/heatmap.png" alt="Heatmap Hamburg">
 
   <p class="chart-title">4. Verspätungen nach Station</p>
@@ -241,28 +218,23 @@
   <img src="charts/delay_by_station.png" alt="Verspätungen Station">
 
   <p class="chart-title">5. Gesamtüberblick – Verkehrsmittel</p>
-  <p>Busse und Regionalzüge verzeichnen die höchsten Verspätungen,  
-  während die U-Bahn durch eigene Infrastruktur konstante Pünktlichkeit bietet.</p>
+  <p>Busse und Regionalzüge verzeichnen die höchsten Verspätungen, während die U-Bahn durch eigene Infrastruktur konstante Pünktlichkeit bietet.</p>
   <img src="charts/delay_by_station_one_plot.png" alt="Kombinierte Verspätung">
 
   <p class="chart-title">6. Stündliche Muster</p>
-  <p>Spitzenzeiten morgens und abends, zusätzliche Ausschläge durch ICE-Verkehr –  
-  ein Abbild des täglichen Lebensrhythmus.</p>
+  <p>Spitzenzeiten morgens und abends, zusätzliche Ausschläge durch ICE-Verkehr – ein Abbild des täglichen Lebensrhythmus.</p>
   <img src="charts/delay_by_hour.png" alt="Verspätung nach Stunde">
 
   <p class="chart-title">7. Ursachen der Verspätung</p>
-  <p>Nachmittags häufen sich polizeiliche und medizinische Einsätze bei der S-Bahn,  
-  während die Regionalbahn von planmäßigen Wartungen geprägt ist.</p>
+  <p>Nachmittags häufen sich polizeiliche und medizinische Einsätze bei der S-Bahn, während die Regionalbahn von planmäßigen Wartungen geprägt ist.</p>
   <img src="charts/delay_by_caus.png" alt="Verspätungsursachen">
 
   <p class="chart-title">8. Prognosegenauigkeit – Random Forest</p>
-  <p>Fehler steigen mit dem Vorhersagehorizont.  
-  Kurzfristige Prognosen bleiben präzise, längere verlieren an Zuverlässigkeit.</p>
+  <p>Fehler steigen mit dem Vorhersagehorizont. Kurzfristige Prognosen bleiben präzise, längere verlieren an Zuverlässigkeit.</p>
   <img src="charts/Medien (4).png" alt="Prognosegenauigkeit">
 
   <p class="chart-title">9. Ereignisse und Spitzen</p>
-  <p>Etwa 80 % aller Spitzenwerte fallen auf Veranstaltungstage –  
-  Kultur ist ein zentraler Motor der Stadtmobilität.</p>
+  <p>Etwa 80 % aller Spitzenwerte fallen auf Veranstaltungstage – Kultur ist ein zentraler Motor der Stadtmobilität.</p>
   <img src="charts/Medien (6).png" alt="Ereignisse Spitzen">
 
   <p class="chart-title">10. Random Forest Vorhersagen</p>
@@ -279,12 +251,11 @@
 
   <p class="chart-title">13. Fehler vs Horizont</p>
   <p>Die Prognosegenauigkeit nimmt exponentiell mit der Zeit ab – ein Hinweis auf die Grenzen langfristiger Modelle.</p>
-  <img src="charts/model_comparison (1).png" alt="Fehler vs Horizont">
+  <img src="charts/23b69b0f-2ec9-4093-b993-f94e7b923eae.png" alt="Fehler vs Horizont">
 
   <p class="chart-title">14. Spitzen nach Station</p>
-  <p>Bergedorf und Berliner Tor zeigen die höchste Event-Korrelation (~80 %),  
-  während Altona vielfältigere Mobilitätsmuster aufweist.</p>
-  <img src="charts/Medien (5).png" alt="Spitzen nach Station">
+  <p>Bergedorf und Berliner Tor zeigen die höchste Event-Korrelation (~80 %), während Altona vielfältigere Mobilitätsmuster aufweist.</p>
+  <img src="charts/8ef80921-9a5e-4aef-bb56-f98154e08851.png" alt="Spitzen nach Station">
 </section>
 
 <section id="dataset">
@@ -295,8 +266,7 @@
     <li><b>Veranstaltungs-API Hamburg</b> – Kultur- und Eventdaten zur Spitzenanalyse.</li>
     <li><b>Verkehrssensorik</b> – Verkehrsflussdaten zur Kontextbewertung.</li>
   </ul>
-  <p>Alle Quellen wurden auf einheitliche 15-Minuten-Zeitfenster normalisiert,  
-  um Vergleichbarkeit und Vorhersagequalität zu gewährleisten.</p>
+  <p>Alle Quellen wurden auf einheitliche 15-Minuten-Zeitfenster normalisiert, um Vergleichbarkeit und Vorhersagequalität zu gewährleisten.</p>
 </section>
 </div>
 
